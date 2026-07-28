@@ -1,0 +1,207 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyM5ggNVx3LSBkX7ixAP0Tks",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/nnurfariha123-byte/DKB3263/blob/main/AMALI_PYTHON_NUMPY%2C_PANDAS_DAN_MATPLOTLIB./python/ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "AMALI PYTHON: NUMPY, PANDAS DAN MATPLOTLIB"
+      ],
+      "metadata": {
+        "id": "0yOGx9R1FA7r"
+      }
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "LXQ8iLqoEqYM",
+        "outputId": "12599860-55f7-475a-8152-0ed0045fab95"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "[70 85 90 65 80]\n",
+            "Purata markah: 78.0\n",
+            "Markah tertinggi: 90\n",
+            "Markah terendah: 65\n",
+            "Jumlah markah: 390\n",
+            "[75 90 95 70 85]\n"
+          ]
+        }
+      ],
+      "source": [
+        "import numpy as np\n",
+        "import pandas as pd\n",
+        "import matplotlib.pyplot as plt\n",
+        "\n",
+        "markah = np.array([70, 85, 90, 65, 80])\n",
+        "print(markah)\n",
+        "\n",
+        "purata = np.mean(markah)\n",
+        "print(\"Purata markah:\", purata)\n",
+        "\n",
+        "tertinggi = np.max(markah)\n",
+        "print(\"Markah tertinggi:\", tertinggi)\n",
+        "\n",
+        "terendah = np.min(markah)\n",
+        "print(\"Markah terendah:\", terendah)\n",
+        "\n",
+        "jumlah = np.sum(markah)\n",
+        "print(\"Jumlah markah:\", jumlah)\n",
+        "\n",
+        "markah_baru = markah + 5\n",
+        "print(markah_baru)\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Bahagian C: Amali pandas"
+      ],
+      "metadata": {
+        "id": "oyMDxnXnFbgK"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "data = {\n",
+        "\"Nama\": [\"Ali\", \"Siti\", \"Kumar\", \"Mei Ling\", \"Aiman\"],\n",
+        "\"Markah\": [70, 85, 90, 65, 80]\n",
+        "}\n",
+        "\n",
+        "df = pd.DataFrame(data)\n",
+        "print(df)\n",
+        "\n",
+        "print(df.head())\n",
+        "\n",
+        "print(df[\"Nama\"])\n",
+        "\n",
+        "print(df[\"Markah\"])\n",
+        "\n",
+        "purata = df[\"Markah\"].mean()\n",
+        "print(\"Purata markah:\", purata)\n",
+        "\n",
+        "pelajar_cemerlang = df[df[\"Markah\"] >= 80]\n",
+        "print(pelajar_cemerlang)\n",
+        "\n",
+        "df[\"Status\"] = np.where(df[\"Markah\"] >= 50, \"Lulus\", \"Gagal\")\n",
+        "print(df)\n",
+        "\n",
+        "def tentukan_gred(markah):\n",
+        "    if markah >= 80:\n",
+        "        return \"A\"\n",
+        "    elif markah >= 65:\n",
+        "        return \"B\"\n",
+        "    elif markah >= 50:\n",
+        "        return \"C\"\n",
+        "    else:\n",
+        "        return \"D\"\n",
+        "\n",
+        "df[\"Gred\"] = df[\"Markah\"].apply(tentukan_gred)\n",
+        "print(df)\n",
+        "\n",
+        "df.to_csv(\"markah_pelajar.csv\", index=False)\n",
+        "print(\"Fail berjaya disimpan.\")\n",
+        "\n",
+        "data_baru = pd.read_csv(\"markah_pelajar.csv\")\n",
+        "print(data_baru)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "2mSrM5WFFfA1",
+        "outputId": "eb020847-d3b9-4531-f0ce-fdef76fef03b"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "       Nama  Markah\n",
+            "0       Ali      70\n",
+            "1      Siti      85\n",
+            "2     Kumar      90\n",
+            "3  Mei Ling      65\n",
+            "4     Aiman      80\n",
+            "       Nama  Markah\n",
+            "0       Ali      70\n",
+            "1      Siti      85\n",
+            "2     Kumar      90\n",
+            "3  Mei Ling      65\n",
+            "4     Aiman      80\n",
+            "0         Ali\n",
+            "1        Siti\n",
+            "2       Kumar\n",
+            "3    Mei Ling\n",
+            "4       Aiman\n",
+            "Name: Nama, dtype: object\n",
+            "0    70\n",
+            "1    85\n",
+            "2    90\n",
+            "3    65\n",
+            "4    80\n",
+            "Name: Markah, dtype: int64\n",
+            "Purata markah: 78.0\n",
+            "    Nama  Markah\n",
+            "1   Siti      85\n",
+            "2  Kumar      90\n",
+            "4  Aiman      80\n",
+            "       Nama  Markah Status\n",
+            "0       Ali      70  Lulus\n",
+            "1      Siti      85  Lulus\n",
+            "2     Kumar      90  Lulus\n",
+            "3  Mei Ling      65  Lulus\n",
+            "4     Aiman      80  Lulus\n",
+            "       Nama  Markah Status Gred\n",
+            "0       Ali      70  Lulus    B\n",
+            "1      Siti      85  Lulus    A\n",
+            "2     Kumar      90  Lulus    A\n",
+            "3  Mei Ling      65  Lulus    B\n",
+            "4     Aiman      80  Lulus    A\n",
+            "Fail berjaya disimpan.\n",
+            "       Nama  Markah Status Gred\n",
+            "0       Ali      70  Lulus    B\n",
+            "1      Siti      85  Lulus    A\n",
+            "2     Kumar      90  Lulus    A\n",
+            "3  Mei Ling      65  Lulus    B\n",
+            "4     Aiman      80  Lulus    A\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
